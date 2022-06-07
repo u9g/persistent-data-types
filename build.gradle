@@ -32,13 +32,6 @@ java {
 
 publishing {
     publications {
-        create<MavenPublication>("maven") {
-            groupId = "com.manya"
-            artifactId = "persistent-data-types"
-            version = version
-
-            from(components["java"])
-        }
     }
 }
 
