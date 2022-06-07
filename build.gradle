@@ -32,6 +32,11 @@ java {
 
 publishing {
     publications {
+        maven(MavenPublication) {
+            groupId = 'com.manya'
+            artifactId = rootProject.name
+            from components.java
+        }
     }
 }
 
