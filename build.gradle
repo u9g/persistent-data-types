@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+group = "com.manya"
+version = "1.0.22"
+
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://papermc.io/repo/repository/maven-public/"
+    }
+
+}
+
+dependencies {
+    implementation "org.jetbrains:annotations:20.1.0"
+    compileOnly "io.papermc.paper:paper-api:1.18.2-R0.1-SNAPSHOT"
+}
+
+def targetJavaVersion = 17
+java {
+    def javaVersion = JavaVersion.toVersion(targetJavaVersion)
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
+    if (JavaVersion.current() < javaVersion) {
+        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+    }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "com.manya"
+            artifactId = "persistent-data-types"
+            version = version
+
+            from(components["java"])
+        }
+    }
+}
+
